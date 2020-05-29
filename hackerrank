@@ -17,3 +17,9 @@ limit 1;
 
 //to find all values starting with vowels
 SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '^[a,e,i,o,u]';
+
+//ending with vowels
+SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '.*[a,e,i,o,u]$';
+
+//both start and end with vowels
+SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '^[a,e,i,o,u].*[a,e,i,o,u]$';
