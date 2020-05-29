@@ -23,3 +23,12 @@ SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '.*[a,e,i,o,u]$';
 
 //both start and end with vowels
 SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '^[a,e,i,o,u].*[a,e,i,o,u]$';
+
+//not start with vowel
+SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '^[^aeiou]';
+
+//not end with vowel
+SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '.*[^aeiou]$';
+
+//that EITHER do not start or end with vowels
+SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '^[^aeiou]|.*[^aeiou]$';
