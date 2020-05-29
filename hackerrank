@@ -1,3 +1,17 @@
 
 //to find difference b/w all val and dictinct values
 SELECT (CNT-CNT_D) AS DIFF FROM (SELECT COUNT(CITY) AS CNT ,COUNT(DISTINCT CITY) AS CNT_D FROM STATION AS T) AS T
+//ALSO
+select (count(city)-count(distinct city)) from STATION
+
+
+//to find max and min length strings if equal size sort by aphabaetical order
+select CITY, CHAR_LENGTH(CITY)as len 
+from STATION 
+order by len,city 
+limit 1;
+
+select CITY, CHAR_LENGTH(CITY)as len 
+from STATION 
+order by len desc,city 
+limit 1;
