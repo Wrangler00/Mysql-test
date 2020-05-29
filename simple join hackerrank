@@ -1,0 +1,46 @@
+Write a query to print the hacker_id, name, and the total number of challenges created by each student. 
+Sort your results by the total number of challenges in descending order. 
+If more than one student created the same number of challenges, then sort the result by hacker_id. 
+If more than one student created the same number of challenges and the count is less than the maximum number of challenges created, then exclude those students from the result.
+
+SELECT ch.hacker_id ,h.name, COUNT(ch.hacker_id) as tot
+FROM Hackers h
+INNER JOIN Challenges as ch
+ON ch.hacker_id = h.hacker_id
+group by ch.hacker_id, h.name
+    
+HAVING
+    tot = (SELECT MAX(T1.cnt) FROM (
+        SELECT COUNT(hacker_id) as cnt
+        FROM Challenges
+        GROUP BY hacker_id
+        ) T1
+    )
+    OR
+    tot IN (SELECT T2.cnt FROM (
+            SELECT COUNT(*) as cnt
+            FROM Challenges
+            GROUP BY hacker_id
+        ) T2
+        GROUP BY T2.cnt
+        HAVING COUNT(T2.cnt)=1
+    )
+
+ORDER BY tot DESC,ch.hacker_id;
+
+
+The total score of a hacker is the sum of their maximum scores for all of the challenges. Write a query to print the hacker_id, name, and total score of the hackers ordered by the descending score. If more than one hacker achieved the same total score, then sort the result by ascending hacker_id. Exclude all hackers with a total score of  from your result.
+
+SELECT tt.hacker_id,tt.name, sum(tt.sc) as sm
+FROM
+(
+    SELECT h.hacker_id, h.name, sub.challenge_id, COUNT(sub.challenge_id) AS chl_tot, max(sub.score) as sc
+    FROM Hackers AS h
+    INNER JOIN Submissions as sub
+    ON sub.hacker_id = h.hacker_id
+    GROUP BY sub.hacker_id, h.name,sub.challenge_id
+) tt
+GROUP BY tt.hacker_id,tt.name
+HAVING sm>0
+ORDER BY sm DESC,tt.hacker_id ASC
+
