@@ -10,8 +10,10 @@ select CITY, CHAR_LENGTH(CITY)as len
 from STATION 
 order by len,city 
 limit 1;
-
 select CITY, CHAR_LENGTH(CITY)as len 
 from STATION 
 order by len desc,city 
 limit 1;
+
+//to find all values starting with vowels
+SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '^[a,e,i,o,u]';
