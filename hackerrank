@@ -30,5 +30,11 @@ SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '^[^aeiou]';
 //not end with vowel
 SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '.*[^aeiou]$';
 
-//that EITHER do not start or end with vowels
+//that EITHER do not start OR end with vowels
 SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '^[^aeiou]|.*[^aeiou]$';
+
+//that do not start AND end with vowels
+SELECT DISTINCT CITY FROM STATION WHERE CITY RLIKE '^[^aeiou].*[^aeiou]$';
+
+//select with case and order by last 3 characters then secondary sort by id if equal
+SELECT NAME FROM STUDENTS WHERE MARKS>75 ORDER BY RIGHT(NAME,3),ID
