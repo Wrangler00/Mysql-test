@@ -1,0 +1,3 @@
+
+//to find difference b/w all val and dictinct values
+SELECT (CNT-CNT_D) AS DIFF FROM (SELECT COUNT(CITY) AS CNT ,COUNT(DISTINCT CITY) AS CNT_D FROM STATION AS T) AS T
